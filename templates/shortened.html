@@ -7,7 +7,8 @@ content %}
 <div class="content">
   <h2>Your URL was successfully shortened!</h2>
  <div class="input">
-    <a>Copy</a>
+    <a class="btn btn__copy"
+      data-clipboard-text="{{ url_for('shorten', _external=True) }}{{ short }}">Copy</a>
     <input type="text" value=" http://www.cc.xyz/{{ short }}" />
     
   </div>
