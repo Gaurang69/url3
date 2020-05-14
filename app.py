@@ -38,12 +38,22 @@ def catch_all(short_url):
         long_url = '/nope'
     else:
         long_url = existing_url_record[0]
+        #existing_url_record.hits = existing_url_record.hits+1
+       
     return redirect(long_url, code=302)
 
 
 @app.route('/nope')
 def nope():
     return render_template('404.html'), 404
+
+@app.route("/stats")
+def stats():
+    stats = query_db('select short,url from shorten order by id desc')
+    print(stats)
+    return render_template("stats.html", stats=stats)
+
+
 
 
 def shorten_url(x):
@@ -67,7 +77,7 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
-
+    
 def insert_db(table, fields=(), values=()):
     cur = g.db.cursor()
     query = 'INSERT INTO %s (%s) VALUES (%s)' % (
@@ -94,4 +104,4 @@ def teardown_request(exception):
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    app.run(debug=True)
