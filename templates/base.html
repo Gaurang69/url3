@@ -23,7 +23,9 @@
     <div class="container">
       <h1>
         <a class="links" href="{{ url_for('shorten') }}">URL Shortener</a>
-        </h1>
+        <span style="float:right;"
+          ><a class="links" href="{{ url_for('stats') }}">Stats</a></span
+        ></h1>
       {% block content %} {% endblock %}
     </div>
 
