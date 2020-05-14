@@ -1,0 +1,53 @@
+{% extends 'base.html' %} {% block title %}All Submissions{% endblock %} {%
+block content %}
+<div class="content">
+  <table class="table">
+    <tr>
+      <!-- <th>ID</th> -->
+      <th class="th-1">New URL</th>
+      <th>Old URL</th>
+    
+      <!--    <th>Created</th> -->
+    </tr>
+  
+     </tr>
+    {% for stat in stats %}
+    <tr>
+ 
+      <td>
+        <img src="{{ url_for('static', filename='chain.svg') }}" width=16px
+        alt="">
+        {{ stat[0] }}
+        <!--<a
+          href="{{ url_for('shorten') }}{{ short }}"
+          target="_blank"
+          >{{ short }}</a
+        >-->
+      </td>
+      <td class="old-url">
+      	
+        <!--<img
+          src="https://www.google.com/s2/favicons?domain={{ url }}"
+          alt="favicon"/>-->
+        {{ stat[1] }}
+      </td>
+      
+    </tr>
+    {% endfor %}
+
+  </table>
+      
+</div>
+
+
+<!--<div style="text-align: center; padding-top: 5px; font-weight: 600;">
+  <p style="color:#777">
+    {% if stats.has_prev %}
+    <a href="{{url_for('stats',page=stats.prev_num)}}">&lt;&lt; Newer </a>
+    {% else %} &lt;&lt; Newer {% endif %} {% if stats.has_next %}
+    <a href="{{url_for('stats',page=stats.next_num)}}">Older &gt;&gt;</a>
+    {% else %} Older &gt;&gt; {% endif %}
+  </p>
+</div>-->
+
+{% endblock %}
